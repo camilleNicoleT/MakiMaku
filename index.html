@@ -5,31 +5,92 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Maki Maku</title>
-    <link rel="stylesheet" href="assets\style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="assets/style.css"/>
 </head>
 
 <body>
-    <h1>Maki Maku</h1>
-    <h3>Can't decide what to eat or watch tonight?<br>Let Maki Maku do the work.</h3>
-
-    <div class="movie-container">
-        <h3>Find a Movie</h3>
+    <header class="row container col s12 m6">
+    <h1 class= "center-align">Maki Maku</h1>
+    <p class="col s12 center-align">Can't decide what to eat or watch tonight?<br> Let Maki Maku do the work!</p>
+</header>
+<main class="col s12 m6"> 
+    <form action="#" class="container col s6">
+        <div class="card row" id="movie-section">
+            <h3 class= "center-align">Pick a Genre</h3>
+    <p>
+      <label class="radio-section col s6">
+        <input name="action-confirm" color="red" type="radio" id="action" />
+        <span> Action</span>
+      </label>
+    </p>
+    <p>
+      <label class="col s6 radio-section ">
+        <input type="radio" name="adventure-confirm" id= "adventure" />
+        <span>Adventure</span>
+      </label>
+    </p> 
+    <p>
+        <label class="col s6 radio-section">
+          <input type="radio" name="comedy-confirm" id= "comedy" />
+          <span>Comedy</span>
+        </label>
+      </p> 
+      <p>
+        <label class="col s6 radio-section">
+          <input type="radio" name="drama-confirm" id= "drama" />
+          <span> Drama</span>
+        </label>
+      </p>
+      <p>
+        <label class="col s6 radio-section">
+          <input type="radio" name="crime-confirm" id= "crime"/>
+          <span> Crime</span>
+        </label>
+      </p>
+      <p>
+        <label class="radio-section col s6">
+          <input type="radio" name="horror-confirm" id= "horror" />
+          <span> Horror </span>
+        </label>
+      </p>
+</div>
+  </form>
+    <form action="#" class="container col s12 m6 center-align">
+        <div class="card " id="movie-section">
+        <h3 class=>Find a Restaurant</h3>
         <form>
-            <label>Enter Genre</label>
-            <input type="text" id="genre-input" name="genre">
+            <label class="align-center">Enter Zipcode</label>
+            <input type="text-box m3"  id="genre-input" name="resturant">
         </form>
         <div>
-            <li class="movie-list"></li>
+            <ul class="resturaunt-list"></ul>
         </div>
-    </div>
-    <div class="meal-container">
-        <h3>Find a Meal</h3>
-        <li class="meal-list"></li>
+        <ul class="resturaunt-list"></ul>
     </div>
 
-    
+<div class="col s12 center-align m6">
+        <button type="submit" class="myBtn hoverable center-align" id="firstButton">
+            Generate Date Ideas!
+        </button>
+    </div>
 
-    <script src="assets\script.js"></script>
+   </form>
+
+    <div class="container center-align">
+        <div class="row col s12 m6">
+        <ul class="movie-list col s6">
+            <h4 class="center-align">Movies</h4>
+        </ul>
+       
+        <ul class="meal-list col s6">
+            <h4 class="center-align">Restaurants</h4>
+            <li>Restaurant Name Example</li>
+          </ul>
+          </div>
+    </div>
+</main>
+        
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="./assets/script.js"></script>
 </body>

@@ -1,0 +1,40 @@
+:root {
+    --primary: #dad0cc;
+    --secondary: #d11e1e;
+    --tertiary: #312f2f;
+    --border-radius: .3rem;
+  }
+* {
+    box-sizing: border-box;
+  }
+  
+header {
+    font-weight: bolder;
+  }
+
+  body {
+    background-color: var(--primary);
+    font-family: sans-serif;
+    color: black;
+}
+  
+span {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    color:#312f2f;
+}
+form {
+    border-radius: 15px;
+    background: var(--tertiary);
+ }
+  
+.container {
+    background: rgba(255, 255, 255, 0.75);  
+    border: 1px solid var(--secondary-color);  
+}
+  
+button {
+    border-radius: 10px;
+    padding:5px;
+    margin-bottom: 3%;
+}

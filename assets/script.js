@@ -1,5 +1,5 @@
-var genre = document.querySelector('#genre-input');
-var movieList = document.querySelector('#movie-list');
+var genre = document.querySelector('.genre-input');
+var movieList = document.querySelector('.movie-list');
 
 
 var getMovies = function(genre) {
@@ -11,7 +11,7 @@ var getMovies = function(genre) {
         console.log(response);
         response.json().then(function (data) {
           console.log(data);
-          displayMovies(data, genre);
+          displayMovies(data.results);
         });
       } else {
         alert('Error: ' + response.statusText);
@@ -22,12 +22,31 @@ var getMovies = function(genre) {
     });
 };
 
-var displayMovies = function(genre) {
+var displayMovies = function(results) {
 
-    for (var i = 0; i < data.length; i+4); 
+    for (var i = 0; i < 5; i++) {
+
+        // var movieEl = document.createElement('ul');
+
+        var title = results[i].title
+
+        console.log(title);
+
+        var titleEl = document.createElement('li');
+
+        titleEl.innerHTML = title
+
+        console.log(titleEl);
+
+        movieList.appendChild(titleEl);
+
+        // movieList.append(movieEl);
+    }
+
 
 }
 
-displayMovies ()
 
-getMovies()
+getMovies("Comedy");
+
+displayMovies()
