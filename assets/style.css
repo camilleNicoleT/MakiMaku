@@ -26,12 +26,9 @@ span {
 form {
     border-radius: 15px;
     background: var(--tertiary);
-    
-
-  }
+ }
   
 .container {
-
     background: rgba(255, 255, 255, 0.75);  
     border: 1px solid var(--secondary-color);  
 }
