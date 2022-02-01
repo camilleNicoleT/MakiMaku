@@ -8,9 +8,9 @@ var getMovies = function(genre) {
     fetch(apiUrl)
     .then(function (response) {
       if (response.ok) {
-        console.log(response);
+        // console.log(response);
         response.json().then(function (data) {
-          console.log(data);
+          // console.log(data);
           displayMovies(data.results);
         });
       } else {
@@ -30,13 +30,13 @@ var displayMovies = function(results) {
 
         var title = results[i].title
 
-        console.log(title);
+        // console.log(title);
 
         var titleEl = document.createElement('li');
 
         titleEl.innerHTML = title
 
-        console.log(titleEl);
+        // console.log(titleEl);
 
         movieList.appendChild(titleEl);
 
@@ -46,7 +46,19 @@ var displayMovies = function(results) {
 
 }
 
+var myHeaders = new Headers();
+myHeaders.append("X-API-KEY", "89a322aeccb5ab89c42ab8f70808d1f9");
+
+var requestOptions = {
+  method: 'GET',
+  headers: myHeaders,
+  redirect: 'follow'
+};
+
+fetch("https://api.documenu.com/v2/restaurants/zip_code/07652", requestOptions)
+  .then(response => response.json())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+
 
 getMovies("Comedy");
-
-displayMovies()
