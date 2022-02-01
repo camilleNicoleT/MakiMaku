@@ -23,18 +23,21 @@ span {
     font-weight: bold;
     color:#312f2f;
 }
-form {
-    border-radius: 15px;
-    background: var(--tertiary);
- }
-  
 .container {
-    background: rgba(255, 255, 255, 0.75);  
-    border: 1px solid var(--secondary-color);  
-}
-  
+    border-radius: 15px;
+   
+   }
+
 button {
     border-radius: 10px;
     padding:5px;
     margin-bottom: 3%;
+    background-color: #ebe2e2;
+}
+.card {
+  border-radius: 7px;
+ }
+#zipcode-input {
+  margin-bottom: 5px;
+  padding: 1px;
 }
