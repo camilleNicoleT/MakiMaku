@@ -12,7 +12,7 @@ header {
     font-weight: bolder;
   }
 
-  body {
+body {
     background-color: var(--primary);
     font-family: sans-serif;
     color: black;

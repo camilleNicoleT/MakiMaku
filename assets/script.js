@@ -4,34 +4,39 @@ var generateBtn = document.querySelector('#btn');
 var genre = '';
 
 
-var getMovies = function() {
- var apiUrl = 'https://api.themoviedb.org/3/discover/movie?api_key=1a546d3d450a8b39075fa9e7e9e4d391&language=en-US&include_adult=false&page=1&with_genres=' 
+var getMovies = function(genre) {
+ var apiUrl = 'https://api.themoviedb.org/3/discover/movie?api_key=1a546d3d450a8b39075fa9e7e9e4d391&language=en-US&include_adult=false&page=1&with_genres='
+//  + page[i] 
   + genre;
-  
+ 
   fetch(apiUrl)
-  .then(function (response) {
-    if (response.ok) {
-      // console.log(response);
-      response.json().then(function (data) {
+  .then(function (data) {
+    if (data.ok) {
+       console.log(response);
+      results.json().then(function (data) {
        var results = data.results;
-          console.log(results);
+        
           displayMovies(results);
+          
       });
     } else {
       alert('Error: ' + response.statusText);
     }
+   
   })
     .catch(function (error) {
       alert('Unable to connect to The Movie Database');
     });
+ 
+
   var displayMovies = function(results) {
-      
+    
+
     for (var i = 0; i < 5; i++) 
   
         // var movieEl = document.createElement('ul');
-  
         var title = results[i].title
-  
+        
         console.log(title);
       
         var titleEl = document.createElement('li');
@@ -42,12 +47,33 @@ var getMovies = function() {
   
         movieList.appendChild(titleEl);
   
-        // movieList.append(movieEl);
-     },
-    }
+        // movieList.append(movieEl);       
+     }
+     
+    
+     displayMovies();
+}
+ 
+// function paginated_fetch(
+//   url = is_required('https://api.themoviedb.org/3/discover/movie?api_key=1a546d3d450a8b39075fa9e7e9e4d391&language=en-US&include_adult=false'),
+//   page = 1,
+//   previousResponse = []
+// ) {
+//   return fetch(`${url}&page=${page}&with_genres=`+genre) // Append the page number to the base URL
+//     .then(response => response.json())
+//     .then(newResponse => {
+//       const response = [...previousResponse, ...newResponse]; // Combine the two arrays
 
-  
-displayMovies(results),
+//       if (newResponse.length !== 0) {
+//         page++;
+//        return fetch(url, page, response);
+        
+//       }
+//      return response;
+    //      });
+//     console.log("responded");
+
+ 
 
 // function loadDateIdeas() {
  
@@ -60,7 +86,7 @@ displayMovies(results),
 //   document.getElementById(dateKey) = savedDate;
 //   }
 //   }
-//   loadDateIdeas();
+//   loadDateIdeas();}
  
 
 
@@ -71,8 +97,9 @@ document.getElementById('btn').onclick = function() {
   {
       if (radio.checked) {
         genre = JSON.stringify(radio.value);
+        console.log(genre);
        }
       
-    }
-    getMovies(genre);
+          }
+  getMovies(genre);
   }
