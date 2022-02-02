@@ -1,19 +1,21 @@
 
 var movieList = document.querySelector('.movie-list');
 var generateBtn = document.querySelector('#btn');     
-var genre = '';
+var genre;
+var page = 2;
 
+var getMovies = function() {
 
-var getMovies = function(genre) {
- var apiUrl = 'https://api.themoviedb.org/3/discover/movie?api_key=1a546d3d450a8b39075fa9e7e9e4d391&language=en-US&include_adult=false&page=1&with_genres='
+ var apiUrl = `https://api.themoviedb.org/3/discover/movie?api_key=1a546d3d450a8b39075fa9e7e9e4d391&language=en-US&include_adult=false&page=${page}&with_genres=${genre}`;
 //  + page[i] 
-  + genre;
+  console.log(apiUrl);
  
   fetch(apiUrl)
-  .then(function (data) {
-    if (data.ok) {
+  .then(function (response) {
+    if (response.ok) {
        console.log(response);
-      results.json().then(function (data) {
+      response.json().then(function (data) {
+        console.log(data);
        var results = data.results;
         
           displayMovies(results);
@@ -26,34 +28,33 @@ var getMovies = function(genre) {
   })
     .catch(function (error) {
       alert('Unable to connect to The Movie Database');
-    });
+  });
  
 
   var displayMovies = function(results) {
     
 
-    for (var i = 0; i < 5; i++) 
+    for (var i = 0; i < 5; i++) {
   
         // var movieEl = document.createElement('ul');
-        var title = results[i].title
+        var title = results[i].title;
         
         console.log(title);
       
         var titleEl = document.createElement('li');
   
-        titleEl.innerHTML = title
+        titleEl.innerHTML = title;
   
         console.log(titleEl);
   
         movieList.appendChild(titleEl);
   
         // movieList.append(movieEl);       
-     }
+     }}
      
-    
-     displayMovies();
 }
- 
+
+
 // function paginated_fetch(
 //   url = is_required('https://api.themoviedb.org/3/discover/movie?api_key=1a546d3d450a8b39075fa9e7e9e4d391&language=en-US&include_adult=false'),
 //   page = 1,
@@ -91,15 +92,21 @@ var getMovies = function(genre) {
 
 
 document.getElementById('btn').onclick = function() {
+  
   var radios = document.getElementsByName('genre');
   
   for (var radio of radios)
+  
   {
       if (radio.checked) {
-        genre = JSON.stringify(radio.value);
+        
+        genre = radio.value;
+
         console.log(genre);
-       }
       
-          }
-  getMovies(genre);
+      }
   }
+
+  getMovies();
+
+}
