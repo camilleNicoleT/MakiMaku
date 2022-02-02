@@ -49,8 +49,7 @@ var getMovies = function(genre) {
   
         // movieList.append(movieEl);       
      }
-     
-    
+         
      displayMovies();
 }
  
@@ -90,16 +89,27 @@ var getMovies = function(genre) {
  
 
 
-document.getElementById('btn').onclick = function() {
+document.getElementById('btn').onclick = function(genre) {
   var radios = document.getElementsByName('genre');
-  
   for (var radio of radios)
   {
       if (radio.checked) {
         genre = JSON.stringify(radio.value);
         console.log(genre);
        }
-      
-          }
+      }
+  var zipInput = document.getElementById('zipcode-input').value;
+  JSON.stringify(zipInput);
+  console.log(zipInput);
+  
+  var zipCodeId = document.getElementById('zipcode-input').getAttribute('id')
+  localStorage.setItem(zipCodeId, zipInput);
+
+  var genreKey = document.querySelector('span').getAttribute("id");
+  localStorage.setItem(genreKey, genre);
+      if(zipInput==null)
+        
+
   getMovies(genre);
+  //getRestaurant();
   }
