@@ -4,14 +4,16 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Maki Maku</title>
+    <title>Food&Video</title>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="assets/style.css"/>
 </head>
 
 <body>
     <header class="row container col s12 m6">
-    <h1 class= "center-align">Maki Maku</h1>
+    <h1 class= "center-align"><span class="m">M</span>aki <span class="m">M</span>aku</h1>
     <p class="col s12 center-align">Can't decide what to eat or watch tonight?<br> Let Maki Maku do the work!</p>
 </header>
 <main class="col s12 m6 container"> 
@@ -20,73 +22,77 @@
             <h3 class="center-align">Pick a Genre</h3>
     <p>
       <label class="radio-section col s6">
-        <input name="genre" type="radio" id="action" value="action" />
+        <input name="genre" type="radio" id="action" value="28" />
         <span> Action</span>
       </label>
     </p>
     <p>
       <label class="col s6 radio-section ">
-        <input type="radio" name="genre" id= "adventure" value="adventure"/>
+        <input type="radio" name="genre" id= "adventure" value="12"/>
         <span>Adventure</span>
       </label>
     </p> 
     <p>
         <label class="col s6 radio-section">
-          <input type="radio" name="genre"id= "comedy" value="comedy"/>
+          <input type="radio" name="genre"id= "comedy" value="35"/>
           <span>Comedy</span>
         </label>
       </p> 
       <p>
         <label class="col s6 radio-section">
-          <input type="radio" name="genre" id= "drama" value="drama"/>
+          <input type="radio" name="genre" id= "drama" value="18"/>
           <span> Drama</span>
         </label>
       </p>
       <p>
         <label class="col s6 radio-section">
-          <input type="radio" name="genre" id= "crime"value="crime"/>
+          <input type="radio" name="genre" id= "crime"value="80"/>
           <span> Crime</span>
         </label>
       </p>
       <p>
         <label class="radio-section col s6">
-          <input type="radio" name="genre" id= "horror" value="horror"/>
+          <input type="radio" name="genre" id= "horror" value="27"/>
           <span> Horror </span>
         </label>
       </p>
 </div>
-  <div class="card p-2">
-  <h3 class=>Find a Restaurant</h3>
-      <label class="align-center black-text">Enter Zipcode</label>
-      <input type="text-box m3"  id="zipcode-input" name="restaurant"> ad 
- 
+    <div class="card p-2 center-align" id="restaurant-zip" >
+        <h3 class=" text-center">Restaurants Near You</h3>
+        <label class="align-center black-text"> Zipcode</label>
+        <input type="text-box p-2 text-center center-align"  id="zip-input" name="restaurants">
+     </form>
 </div>
 </form>
-   
-        <div>
-            <ul class="resturaunt-list"></ul>
-    </div>
+<!--Restaurant and Genre Results-->
        
 <div class="col s12 center-align m6">
-        <button type="click" class="myBtn hoverable center-align" id="btn">
-            Generate Date Ideas!
+        <button type="submit" class="myBtn btn-large waves-effect waves-burgundy red" id="btn">Search
+          <i class="material-icons font-size: 16px">search</i>
         </button>
-    </div>
-</form>
- <div class="container center-align">
-        <div class="row col s12 m6">
+</div>
+ 
+  <div class="container col s12">
+    <h4 class="row col s6">Movies</h4>
+        <div class="row col ">
         <ul class="movie-list col s6" id="output">
-            
-        </ul>
-       
-        <ul class="meal-list col s6">
-            <h4 class="center-align">Restaurants</h4>
-            <li>Restaurant Name Example</li>
-          </ul>
-          </div>
+        </ul></div>
+      
+      <h4 class="row col s6">Restaurants</h4>
+      <div class="row col ">
+          <ul class="resturaunt-list col s6"></ul>
     </div>
 </main>
-        
+<footer class="page-footer red">
+  <div class="container p4">
+    <div class="row">
+      <div class="col s12">
+       <p class="grey-text text-lighten-4">Created by Alston, Brian, Camille and Mohammad.</p>
+      </div>
+    <div class="container">
+    © 2022 QueryKlingons
+    <a class="grey-text text-lighten-4 right" href="https://www.themoviedb.org/">Movie Suggestions from TMDB</a>  </div>
+</footer>       
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="./assets/script.js"></script>
 </body>

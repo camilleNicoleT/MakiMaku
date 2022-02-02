@@ -23,16 +23,20 @@ span {
     font-weight: bold;
     color:#312f2f;
 }
-.container {
+main {
     border-radius: 15px;
+    background: var(--primary) ;
    
    }
 
 button {
-    border-radius: 10px;
+    border-radius: 15px;
     padding:5px;
     margin-bottom: 3%;
     background-color: #ebe2e2;
+}
+button :hover{
+ background-color: var(--secondary);
 }
 .card {
   border-radius: 7px;
@@ -40,4 +44,12 @@ button {
 #zipcode-input {
   margin-bottom: 5px;
   padding: 1px;
+}
+.m {
+  color: #d10202;
+  font-size: 4.2rem;
+    line-height: 110%;
+    margin: 2.8rem 0 1.68rem 0;
+    font-family: sans-serif;
+    font-style: bold;
 }
