@@ -2,7 +2,7 @@
 var movieList = document.querySelector('.movie-list');
 var generateBtn = document.querySelector('#btn');     
 var genre;
-var page = 2;
+var page = 1;
 
 var getMovies = function() {
 
