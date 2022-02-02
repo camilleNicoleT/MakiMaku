@@ -53,3 +53,9 @@ button :hover{
     font-family: 'Trebuchet MS', sans-serif;
     font-style: italic;
 }
+.hide {
+  display:none;
+}
+.show {
+  display:block;
+}

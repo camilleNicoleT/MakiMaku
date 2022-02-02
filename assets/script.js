@@ -2,9 +2,15 @@ var movieList = document.querySelector('.movie-list');
 var generateBtn = document.querySelector('#btn');     
 var genre;
 var page = 1;
+var movieLoopStart = 0;
+var movieLoopEnd = 5;
 var genreKey = document.querySelector('span').getAttribute("id");
+var movieButtonEl = document.querySelector("#movieBtnDiv");
 
 var restaurantListEl = document.querySelector("#restaurant-list");
+
+
+
 
 var getMovies = function() {
 
@@ -17,7 +23,7 @@ var getMovies = function() {
     if (response.ok) {
        console.log(response);
       response.json().then(function (data) {
-        //console.log(data);
+        console.log(data);
        var results = data.results;
         
           displayMovies(results);
@@ -35,10 +41,13 @@ var getMovies = function() {
 
   var displayMovies = function(results) {
     
+    movieList.innerHTML = "";
+    movieButtonEl.setAttribute("class", "show");
 
-    for (var i = 0; i < 5; i++) {
+
+    for (var i = movieLoopStart; i < movieLoopEnd; i++) {
   
-        // var movieEl = document.createElement('ul');
+
         var title = results[i].title;
         
         console.log(title);
@@ -51,7 +60,7 @@ var getMovies = function() {
   
         movieList.appendChild(titleEl);
   
-        // movieList.append(movieEl);       
+      
       }
     }
 }
@@ -129,4 +138,23 @@ genreKey = document.querySelector('span').getAttribute("id");
 
   getMovies();
   getRestaurant(zipCode);
+}
+
+document.getElementById('moviebtn').onclick = function() {
+
+  if (movieLoopEnd < 19) {
+    movieLoopStart = movieLoopStart + 5;
+    movieLoopEnd = movieLoopEnd + 5;
+    console.log(movieLoopStart, movieLoopEnd);
+
+    getMovies();
+  } else {
+    movieLoopStart = 0;
+    movieLoopEnd = 5;
+    page++;
+    console.log(movieLoopStart, movieLoopEnd);
+    console.log(page);
+    getMovies();
+  }
+
 }
