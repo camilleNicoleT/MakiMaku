@@ -1,14 +1,9 @@
-
 var movieList = document.querySelector('.movie-list');
 var generateBtn = document.querySelector('#btn');     
 var genre;
 var page = 1;
-
-//var zipCodeKey = document.getElementById('zipcode-input').getAttribute('id')
 var genreKey = document.querySelector('span').getAttribute("id");
 
-//var zipcodeInputEl = document.getElementById("#zip-input");
-//var userFormEl = document.querySelector("#btn");
 var restaurantListEl = document.querySelector("#restaurant-list");
 
 var getMovies = function() {
@@ -22,7 +17,7 @@ var getMovies = function() {
     if (response.ok) {
        console.log(response);
       response.json().then(function (data) {
-        console.log(data);
+        //console.log(data);
        var results = data.results;
         
           displayMovies(results);
@@ -85,7 +80,6 @@ var displayRestaurants = function(restaurants){
 
 }
  
-
 // function loadDateIdeas() {
  
 //   for(var i = 0; i < 10; i++){
@@ -99,20 +93,6 @@ var displayRestaurants = function(restaurants){
 //   }
 //   loadDateIdeas();}
  
-
-// var formSubmitHandler = function(event){ 
-//   event.preventDefault()
-//   var zipCode = zipcodeInputEl.value.trim()
-
-//   if (zipCode) {
-//     getRestaurant(zipCode);
-//     zipcodeInputEl.value = "";
-//   } else {
-//     alert("Please enter a zipcode")
-//   }
-//   console.log(zipCode)
-// };
-
 
 document.getElementById('btn').onclick = function() {
  // event.preventDefault()
