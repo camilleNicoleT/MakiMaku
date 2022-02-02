@@ -3,6 +3,9 @@ var movieList = document.querySelector('.movie-list');
 var generateBtn = document.querySelector('#btn');     
 var genre;
 var page = 1;
+var zipInput = document.getElementById('zipcode-input').value;
+var zipCodeId = document.getElementById('zipcode-input').getAttribute('id')
+var genreKey = document.querySelector('span').getAttribute("id");
 
 var getMovies = function() {
 
@@ -50,8 +53,8 @@ var getMovies = function() {
         movieList.appendChild(titleEl);
   
         // movieList.append(movieEl);       
-     }}
-     
+      }
+    }
 }
 
 
@@ -90,11 +93,9 @@ var getMovies = function() {
 //   loadDateIdeas();}
  
 
-
 document.getElementById('btn').onclick = function() {
   
   var radios = document.getElementsByName('genre');
-  
   for (var radio of radios)
   
   {
@@ -103,10 +104,21 @@ document.getElementById('btn').onclick = function() {
         genre = radio.value;
 
         console.log(genre);
-      
+       }
       }
-  }
+  
+ zipInput = document.getElementById('zipcode-input').value;
+  JSON.stringify(zipInput);
+  console.log(zipInput);
+
+  zipCodeId = document.getElementById('zipcode-input').getAttribute('id')
+ localStorage.setItem(zipCodeId, zipInput);
+
+genreKey = document.querySelector('span').getAttribute("id");
+  localStorage.setItem(genreKey, genre);
+      // if(zipInput==null)
+        
 
   getMovies();
-
-}
+  //getRestaurant();
+  }
