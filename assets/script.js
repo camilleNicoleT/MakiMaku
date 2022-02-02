@@ -1,52 +1,46 @@
-var genre = document.querySelector('.genre-input');
-var movieList = document.querySelector('.movie-list');
 
+var zipcodeInputEl = document.querySelector("#zip-input")
+var userFormEl = document.querySelector("#restaurant-zip")
+var restaurantListEl = document.querySelector("#restaurant-list")
 
-var getMovies = function(genre) {
-    var apiUrl = 'https://api.themoviedb.org/3/discover/movie?api_key=1a546d3d450a8b39075fa9e7e9e4d391&language=en-US&sort_by=popularity.desc&include_adult=false&page=1&with_genres=' + genre;
-    
-    fetch(apiUrl)
-    .then(function (response) {
-      if (response.ok) {
-        console.log(response);
-        response.json().then(function (data) {
-          console.log(data);
-          displayMovies(data.results);
-        });
-      } else {
-        alert('Error: ' + response.statusText);
-      }
-    })
-    .catch(function (error) {
-      alert('Unable to connect to The Movie Database');
-    });
+// firm handler is the get user input (zip code)
+// preventDefault prohibits the browser from refreshing the page when using the submit button
+
+var formSubmitHandler = function(event){ 
+  event.preventDefault()
+  var zipCode = zipcodeInputEl.value.trim()
+
+  if (zipCode) {
+    getRestaurant(zipCode);
+    zipcodeInputEl.value = "";
+  } else {
+    alert("please enter a zipcode")
+  }
+  console.log(zipCode)
 };
 
-var displayMovies = function(results) {
-
-    for (var i = 0; i < 5; i++) {
-
-        // var movieEl = document.createElement('ul');
-
-        var title = results[i].title
-
-        console.log(title);
-
-        var titleEl = document.createElement('li');
-
-        titleEl.innerHTML = title
-
-        console.log(titleEl);
-
-        movieList.appendChild(titleEl);
-
-        // movieList.append(movieEl);
+var getRestaurant = function(zipCode) {
+  var apiUrl = "https://api.documenu.com/v2/restaurants/zip_code/"+ zipCode + "?key=89a322aeccb5ab89c42ab8f70808d1f9"
+  fetch(apiUrl)
+  .then(function (response) {
+    if (response.ok) {
+      response.json().then(function (data) {
+      console.log(data)
+      displayRestaurants(data)
+      });
     }
+  })
+}
 
+var displayRestaurants = function(restaurants){
+  for (i = 0; i < 5; i++) {
+    console.log();
+    var restaurantName = document.createElement("li")
+    restaurantName.textContent = restaurants.data[i].restaurant_name
+    restaurantListEl.append(restaurantName)
+  }
 
 }
 
 
-getMovies("Comedy");
-
-displayMovies()
+userFormEl.addEventListener("submit", formSubmitHandler)

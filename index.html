@@ -54,18 +54,16 @@
           <span> Horror </span>
         </label>
       </p>
-</div>
+    </div>
   </form>
+  <!--restaurant-->
     <form action="#" class="container col s12 m6 center-align">
         <div class="card " id="movie-section">
         <h3 class=>Find a Restaurant</h3>
-        <form>
-            <label class="align-center">Enter Zipcode</label>
-            <input type="text-box m3"  id="genre-input" name="resturant">
-        </form>
+        
       </div>
         <div>
-            <ul class="resturaunt-list"></ul>
+            <ul class="restaraunt-list"></ul>
     </div>
        
 <div class="col s12 center-align m6">
@@ -75,14 +73,20 @@
     </div>
 
    </form>
-
+<form id="restaurant-zip" >
+            <label class="align-center">Enter Zipcode</label>
+            <input type="text-box m3"  id="zip-input" name="restaurants">
+            <button type="submit">Search Zip</button>
+        </form>
+   
+<!--results -->
     <div class="container center-align">
         <div class="row col s12 m6">
         <ul class="movie-list col s6">
             <h4 class="center-align">Movies</h4>
         </ul>
        
-        <ul class="meal-list col s6">
+        <ul id="restaurant-list" class="restaurant-list col s6">
             <h4 class="center-align">Restaurants</h4>
             <li>Restaurant Name Example</li>
           </ul>
