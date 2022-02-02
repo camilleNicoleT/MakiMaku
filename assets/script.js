@@ -58,7 +58,7 @@ var getMovies = function() {
 
 
 var getRestaurant = function(zipCode) {
-  var url = "https://api.documenu.com/v2/restaurants/?zip_code="+ zipCode + "key=89a322aeccb5ab89c42ab8f70808d1f9"
+  var url = "https://api.documenu.com/v2/restaurants/zip_code/"+ zipCode + "?key=89a322aeccb5ab89c42ab8f70808d1f9"
   fetch(url)
   .then(function (response) {
     if (response.ok) {
