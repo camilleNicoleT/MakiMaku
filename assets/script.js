@@ -4,10 +4,13 @@ var genre;
 var page = 1;
 var movieLoopStart = 0;
 var movieLoopEnd = 5;
+var restaurantLoopStart = 0;
+var restaurantLoopEnd = 5;
 var genreKey = document.querySelector('span').getAttribute("id");
 var movieButtonEl = document.querySelector("#movieBtnDiv");
-
-var restaurantListEl = document.querySelector("#restaurant-list");
+var restBtnEl = document.querySelector("#restBtnDiv");
+var zipCode;
+var restaurantListEl = document.querySelector(".resturaunt-list");
 
 
 
@@ -67,7 +70,7 @@ var getMovies = function() {
 
 
 var getRestaurant = function(zipCode) {
-  var url = "https://api.documenu.com/v2/restaurants/zip_code/"+ zipCode + "?key=89a322aeccb5ab89c42ab8f70808d1f9"
+  var url = "https://api.documenu.com/v2/restaurants/zip_code/"+ zipCode + "?key=915deb38ae10f2c114fc2fcabcffbddf"
   fetch(url)
   .then(function (response) {
     if (response.ok) {
@@ -80,11 +83,24 @@ var getRestaurant = function(zipCode) {
 }
 
 var displayRestaurants = function(restaurants){
-  for (i = 0; i < 5; i++) {
-    console.log();
-    var restaurantName = document.createElement("li")
-    restaurantName.textContent = restaurants.data[i].restaurant_name
-    restaurantListEl.append(restaurantName);
+  
+  restaurantListEl.innerHTML = "";
+  restBtnEl.setAttribute("class", "show");
+  
+  for (i = restaurantLoopStart; i < restaurantLoopEnd; i++) {
+    
+    var restaurant = restaurants.data[i].restaurant_name;
+    console.log(restaurant);
+
+ 
+    var restaurantEl = document.createElement('li');
+
+    restaurantEl.innerHTML = restaurant;
+
+    console.log(restaurantEl);
+
+    restaurantListEl.appendChild(restaurantEl);
+
   }
 
 }
@@ -117,12 +133,12 @@ document.getElementById('btn').onclick = function() {
        }
       }
  
-var zipCode = document.getElementById('zip-input').value.trim();
+zipCode = document.getElementById('zip-input').value.trim();
    JSON.stringify(zipCode);
   console.log(zipCode);
 
  if (zipCode) {
-  getRestaurant(zipCode);
+  
   zipCode.value = "";
 } else {
   alert("Please enter a zipcode")
@@ -135,9 +151,9 @@ genreKey = document.querySelector('span').getAttribute("id");
   localStorage.setItem(genreKey, genre);
  
         
-
-  getMovies();
   getRestaurant(zipCode);
+  getMovies();
+
 }
 
 document.getElementById('moviebtn').onclick = function() {
@@ -155,6 +171,24 @@ document.getElementById('moviebtn').onclick = function() {
     console.log(movieLoopStart, movieLoopEnd);
     console.log(page);
     getMovies();
+  }
+
+}
+
+document.getElementById('restbtn').onclick = function() {
+
+  if (restaurantLoopEnd < 24) {
+    restaurantLoopStart = restaurantLoopStart + 5;
+    restaurantLoopEnd = restaurantLoopEnd + 5;
+    console.log(restaurantLoopStart, restaurantLoopEnd);
+
+    getRestaurant(zipCode);
+  } else {
+    movieLoopStart = 0;
+    movieLoopEnd = 5;
+    console.log(movieLoopStart, movieLoopEnd);
+    console.log(page);
+    getRestaurant(zipCode);
   }
 
 }
