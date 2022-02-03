@@ -15,7 +15,7 @@ var restaurantListEl = document.querySelector(".resturaunt-list");
 
 
 
-var getMovies = function() {
+var getMovies = function() { 
 
  var apiUrl = `https://api.themoviedb.org/3/discover/movie?api_key=1a546d3d450a8b39075fa9e7e9e4d391&language=en-US&include_adult=false&page=${page}&with_genres=${genre}`;
 //  + page[i] 
