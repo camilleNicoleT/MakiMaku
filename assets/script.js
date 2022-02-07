@@ -12,7 +12,7 @@ var restBtnEl = document.querySelector("#restBtnDiv");
 var zipCode;
 var restaurantListEl = document.querySelector(".resturaunt-list");
 var movieAnchor = document.querySelector(".movie-anchor");
-
+var selectedMovie = document.querySelector("#selected-movie");
 
 
 
@@ -59,7 +59,8 @@ var getMovies = function() {
 
         var titleAnchor = document.createElement('a');
 
-        titleAnchor.setAttribute("id", "movie-anchor");
+        titleAnchor.setAttribute("onclick", `addMovieToCombo(${i})`);
+        titleAnchor.setAttribute("id", "movie" + i);
 
         titleAnchor.innerHTML = title
       
@@ -200,6 +201,22 @@ document.getElementById('restbtn').onclick = function() {
 
 }
 
-document.getElementById("movie-anchor")
+var addMovieToCombo = function(id) {
+
+    selectedMovie.innerHTML = "";
+  
+    console.log(id);
+
+    var movieToSave = document.getElementById("movie" + id).innerHTML;
+
+    console.log(movieToSave);
+
+    selectedMovie.innerHTML = movieToSave;
+
+    console.log(selectedMovie);
+    
+}
+
+
 
 
