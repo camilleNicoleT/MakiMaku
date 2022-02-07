@@ -11,6 +11,8 @@ var movieButtonEl = document.querySelector("#movieBtnDiv");
 var restBtnEl = document.querySelector("#restBtnDiv");
 var zipCode;
 var restaurantListEl = document.querySelector(".resturaunt-list");
+var movieAnchor = document.querySelector(".movie-anchor");
+
 
 
 
@@ -54,23 +56,28 @@ var getMovies = function() {
         var title = results[i].title;
         
         console.log(title);
+
+        var titleAnchor = document.createElement('a');
+
+        titleAnchor.setAttribute("id", "movie-anchor");
+
+        titleAnchor.innerHTML = title
       
         var titleEl = document.createElement('li');
   
-        titleEl.innerHTML = title;
-  
+        titleEl.appendChild(titleAnchor);
+         
         console.log(titleEl);
   
         movieList.appendChild(titleEl);
-  
-      
+        
       }
     }
 }
 
 
 var getRestaurant = function(zipCode) {
-  var url = "https://api.documenu.com/v2/restaurants/zip_code/"+ zipCode + "?key=915deb38ae10f2c114fc2fcabcffbddf"
+  var url = "https://api.documenu.com/v2/restaurants/zip_code/"+ zipCode + "?key=5b54419361b5d6ff89972ac8696938d6"
   fetch(url)
   .then(function (response) {
     if (response.ok) {
@@ -187,8 +194,12 @@ document.getElementById('restbtn').onclick = function() {
     movieLoopStart = 0;
     movieLoopEnd = 5;
     console.log(movieLoopStart, movieLoopEnd);
-    console.log(page);
-    getRestaurant(zipCode);
+    // console.log(page);
+    // getRestaurant(zipCode);
   }
 
 }
+
+document.getElementById("movie-anchor")
+
+
