@@ -291,5 +291,4 @@ var renderIdeas = function() {
   }
 
 }
-
-
+renderIdeas();
