@@ -62,6 +62,9 @@ button :hover{
 #selected-movie {
   height:50px;
 }
+.p {
+  font-style: underline;
+}
 #selected-restaurant {
   height:50px;
 }

@@ -22,11 +22,11 @@ var savedMovies = [];
 var savedRestaurants = [];
 
 
-
+//Call Movie API with selected Genre
 var getMovies = function() { 
 
  var apiUrl = `https://api.themoviedb.org/3/discover/movie?api_key=1a546d3d450a8b39075fa9e7e9e4d391&language=en-US&include_adult=false&page=${page}&with_genres=${genre}`;
-//  + page[i] 
+
   console.log(apiUrl);
  
   fetch(apiUrl)
@@ -49,7 +49,7 @@ var getMovies = function() {
       alert('Unable to connect to The Movie Database');
   });
  
-
+//Append the movie data to document
   var displayMovies = function(results) {
     
     movieList.innerHTML = "";
@@ -82,7 +82,7 @@ var getMovies = function() {
     }
 }
 
-
+//Call Restaurant api with Zipcode entered by user
 var getRestaurant = function(zipCode) {
   var url = "https://api.documenu.com/v2/restaurants/zip_code/"+ zipCode + "?key=203c86a96cd38ae7e452611be7c2ff7e"
   fetch(url)
@@ -96,6 +96,7 @@ var getRestaurant = function(zipCode) {
   })
 }
 
+//Display 5 options of the API information called
 var displayRestaurants = function(restaurants){
   
   restaurantListEl.innerHTML = "";
@@ -123,7 +124,7 @@ var displayRestaurants = function(restaurants){
   }
 
 }
- 
+//Click event that grabs Zipcode input and Genre option entered
 document.getElementById('btn').onclick = function() {
  // event.preventDefault()
   
@@ -180,6 +181,7 @@ document.getElementById('moviebtn').onclick = function() {
 
 }
 
+//Append next 5 options of restaurants onto page
 document.getElementById('restbtn').onclick = function() {
 
   if (restaurantLoopEnd < 24) {
