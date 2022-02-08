@@ -59,3 +59,9 @@ button :hover{
 .show {
   display:block;
 }
+#selected-movie {
+  height:50px;
+}
+#selected-restaurant {
+  height:50px;
+}

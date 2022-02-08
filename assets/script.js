@@ -11,7 +11,15 @@ var movieButtonEl = document.querySelector("#movieBtnDiv");
 var restBtnEl = document.querySelector("#restBtnDiv");
 var zipCode;
 var restaurantListEl = document.querySelector(".resturaunt-list");
-
+var movieAnchor = document.querySelector(".movie-anchor");
+var selectedMovie = document.querySelector("#selected-movie");
+var selectedRestaurant = document.querySelector("#selected-restaurant");
+var displayMovies = document.querySelector("#saved-movies");
+var displaySavedRestaurants = document.querySelector("#saved-restaurant");
+var movieToSave;
+var restaurantToSave;
+var savedMovies = [];
+var savedRestaurants = [];
 
 
 
@@ -54,23 +62,29 @@ var getMovies = function() {
         var title = results[i].title;
         
         console.log(title);
+
+        var titleAnchor = document.createElement('a');
+
+        titleAnchor.setAttribute("onclick", `addMovieToCombo(${i})`);
+        titleAnchor.setAttribute("id", "movie" + i);
+
+        titleAnchor.innerHTML = title
       
         var titleEl = document.createElement('li');
   
-        titleEl.innerHTML = title;
-  
+        titleEl.appendChild(titleAnchor);
+         
         console.log(titleEl);
   
         movieList.appendChild(titleEl);
-  
-      
+        
       }
     }
 }
 
 
 var getRestaurant = function(zipCode) {
-  var url = "https://api.documenu.com/v2/restaurants/zip_code/"+ zipCode + "?key=915deb38ae10f2c114fc2fcabcffbddf"
+  var url = "https://api.documenu.com/v2/restaurants/zip_code/"+ zipCode + "?key=203c86a96cd38ae7e452611be7c2ff7e"
   fetch(url)
   .then(function (response) {
     if (response.ok) {
@@ -90,12 +104,17 @@ var displayRestaurants = function(restaurants){
   for (i = restaurantLoopStart; i < restaurantLoopEnd; i++) {
     
     var restaurant = restaurants.data[i].restaurant_name;
-    console.log(restaurant);
 
- 
+    var restaurantAnchor = document.createElement('a');
+
+    restaurantAnchor.setAttribute("onclick", `addRestaurantToCombo(${i})`);
+    restaurantAnchor.setAttribute("id", "rest" + i);
+     
+    restaurantAnchor.innerHTML = restaurant;
+
     var restaurantEl = document.createElement('li');
 
-    restaurantEl.innerHTML = restaurant;
+    restaurantEl.appendChild(restaurantAnchor);
 
     console.log(restaurantEl);
 
@@ -105,20 +124,6 @@ var displayRestaurants = function(restaurants){
 
 }
  
-// function loadDateIdeas() {
- 
-//   for(var i = 0; i < 10; i++){
-  
-//     var dateKey = radio.value;
-//     var savedDate = localStorage.getItem(dateKey);
-//     console.log(savedDate);
-  
-//   document.getElementById(dateKey) = savedDate;
-//   }
-//   }
-//   loadDateIdeas();}
- 
-
 document.getElementById('btn').onclick = function() {
  // event.preventDefault()
   
@@ -180,15 +185,115 @@ document.getElementById('restbtn').onclick = function() {
   if (restaurantLoopEnd < 24) {
     restaurantLoopStart = restaurantLoopStart + 5;
     restaurantLoopEnd = restaurantLoopEnd + 5;
-    console.log(restaurantLoopStart, restaurantLoopEnd);
+    // console.log(restaurantLoopStart, restaurantLoopEnd);
 
     getRestaurant(zipCode);
   } else {
     movieLoopStart = 0;
     movieLoopEnd = 5;
     console.log(movieLoopStart, movieLoopEnd);
-    console.log(page);
-    getRestaurant(zipCode);
+    // console.log(page);
+    // getRestaurant(zipCode);
   }
 
 }
+
+var addMovieToCombo = function(id) {
+
+    selectedMovie.innerHTML = "";
+  
+    console.log(id);
+
+    movieToSave = document.getElementById("movie" + id).innerHTML;
+
+    console.log(movieToSave);
+
+    selectedMovie.innerHTML = movieToSave;
+
+}
+
+var addRestaurantToCombo = function(id) {
+
+  selectedRestaurant.innerHTML = "";
+
+  console.log(id);
+
+  restaurantToSave = document.getElementById("rest" + id).innerHTML;
+
+  console.log(restaurantToSave);
+
+  selectedRestaurant.innerHTML = restaurantToSave;
+
+}
+
+document.getElementById('clearbtn').onclick = function () {
+
+    selectedMovie.innerHTML = "";
+    selectedRestaurant.innerHTML = "";
+    console.log("cleared");
+
+}
+
+document.getElementById('savebtn').onclick = function () {
+
+    if (movieToSave == null && restaurantToSave == null) {
+
+      alert("Please select a Movie & Restaurant combo to save");
+
+    } else if (movieToSave == null) {
+
+      alert ("Please select a movie to save")
+
+    } else if (restaurantToSave == null) {
+
+      alert("Pleae select a restaurant to save")
+
+    } else {
+
+    savedMovies.push(movieToSave);  
+    localStorage.setItem('movieArray', JSON.stringify(savedMovies));
+    savedRestaurants.push(restaurantToSave);
+    localStorage.setItem('restArray', JSON.stringify(savedRestaurants));
+    console.log(savedRestaurants);
+    renderIdeas();
+    selectedMovie.innerHTML = "";
+    selectedRestaurant.innerHTML = "";
+
+    }
+}
+
+var renderIdeas = function() {
+
+  displayMovies.innerHTML = ""
+  displaySavedRestaurants.innerHTML = ""
+  
+  var Movies = JSON.parse(localStorage.getItem("movieArray"));
+  var Restaurants = JSON.parse(localStorage.getItem("restArray"));
+    
+  for (var i = 0; i < Movies.length; i++) {
+
+    savedMovieItem = document.createElement('li');
+
+    savedMovieItem.innerHTML = Movies[i];
+
+    console.log(savedMovieItem);
+
+    displayMovies.appendChild(savedMovieItem);
+
+  }
+  
+  for (var i = 0; i < Restaurants.length; i++) {
+
+    savedRestItem = document.createElement('li');
+   
+    savedRestItem.innerHTML = Restaurants[i];
+  
+    console.log(savedRestItem);
+  
+    displaySavedRestaurants.appendChild(savedRestItem);    
+
+  }
+
+}
+
+
