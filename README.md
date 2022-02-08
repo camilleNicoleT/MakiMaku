@@ -2,7 +2,7 @@
 
 <img width="450" alt="MakiMakuLogo" src="https://user-images.githubusercontent.com/94029792/150902337-56b6faa6-e743-4a65-9c94-b52af7c3d486.png">
 
-Maki Maku allows a user to input a movie genre and zip code. It calls the movie api from "The Movie Database" and the restaurant API from "Documenu"
+Maki Maku allows a user to select a movie genre and type in a zip code which then generates a stay-in date. It calls the movie api from "The Movie Database" and the restaurant API from "Documenu".
 
 Tech used:
 HTML, Javascript, CSS, Materialize
