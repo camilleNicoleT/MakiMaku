@@ -117,8 +117,6 @@ var displayRestaurants = function(restaurants){
 
     restaurantEl.appendChild(restaurantAnchor);
 
-    console.log(restaurantEl);
-
     restaurantListEl.appendChild(restaurantEl);
 
   }
@@ -134,14 +132,13 @@ document.getElementById('btn').onclick = function() {
       if (radio.checked) {
         
         genre = radio.value;
-
-        console.log(genre);
        }
       }
- 
+
+//Send input to 
 zipCode = document.getElementById('zip-input').value.trim();
    JSON.stringify(zipCode);
-  console.log(zipCode);
+
 
  if (zipCode) {
   
@@ -150,18 +147,12 @@ zipCode = document.getElementById('zip-input').value.trim();
   alert("Please enter a zipcode")
 }
 
-  zipCodeKey = document.getElementById('zip-input').getAttribute('id')
- localStorage.setItem(zipCodeKey, zipCode);
-
-genreKey = document.querySelector('span').getAttribute("id");
-  localStorage.setItem(genreKey, genre);
- 
-        
   getRestaurant(zipCode);
   getMovies();
 
 }
 
+//When user wants more movie options this event is activated
 document.getElementById('moviebtn').onclick = function() {
 
   if (movieLoopEnd < 19) {
@@ -199,7 +190,7 @@ document.getElementById('restbtn').onclick = function() {
   }
 
 }
-
+//Append Movie title that was clicked to DOM
 var addMovieToCombo = function(id) {
 
     selectedMovie.innerHTML = "";
@@ -214,6 +205,7 @@ var addMovieToCombo = function(id) {
 
 }
 
+//Append Restaurant clicked to DOM
 var addRestaurantToCombo = function(id) {
 
   selectedRestaurant.innerHTML = "";
@@ -236,6 +228,7 @@ document.getElementById('clearbtn').onclick = function () {
 
 }
 
+//Event for Saved Combo Button
 document.getElementById('savebtn').onclick = function () {
 
     if (movieToSave == null && restaurantToSave == null) {
@@ -248,7 +241,7 @@ document.getElementById('savebtn').onclick = function () {
 
     } else if (restaurantToSave == null) {
 
-      alert("Pleae select a restaurant to save")
+      alert("Please select a restaurant to save")
 
     } else {
 
